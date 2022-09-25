@@ -1,5 +1,5 @@
 import {initializeApp} from 'firebase/app'
-import {signInWithRedirect,signInWithEmailAndPassword,getAuth,signInWithPopup,GoogleAuthProvider,createUserWithEmailAndPassword} from 'firebase/auth'
+import {signInWithRedirect,signInWithEmailAndPassword,getAuth,signInWithPopup,GoogleAuthProvider,createUserWithEmailAndPassword,signOut,onAuthStateChanged} from 'firebase/auth'
 import {getFirestore,doc,getDoc,setDoc} from "firebase/firestore"
 import { Await } from 'react-router-dom';
 
@@ -69,3 +69,15 @@ const firebaseConfig = {
         return await signInWithEmailAndPassword(auth, email, password)
     
 }
+
+export const signOutUser =async()=>await signOut(auth)
+
+export const onAuthStateChangedListener=(callback)=>{
+    onAuthStateChanged(auth,callback)
+}
+
+//to do 
+// (auth/weak-password)
+// Firebase: Password should be at least 6 characters
+
+// Firebase: Error (auth/email-already-in-use)
